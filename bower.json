@@ -1,0 +1,28 @@
+{
+  "name": "sticky-icky.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/easytobook/sticky-icky.js",
+  "authors": [
+    "Ionut Popa <ionutzp@gmail.com>"
+  ],
+  "description": "Context aware div hiding",
+  "main": "sticky-icky.js",
+  "keywords": [
+    "scroll",
+    "header",
+    "fixed"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "jquery": ">=1.7"
+  }
+}

@@ -1,0 +1,35 @@
+<html>
+  <head>
+  <title>Test for the sticky div</title>
+  <style>
+    .slide-up {
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%)
+    }
+
+    .slide {
+    -webkit-transition: all .25s ease-in-out;
+    -moz-transition: all .25s ease-in-out;
+    -o-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out
+    }
+  </style>
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../src/sticky-icky.js"></script>
+  </head>
+  <body style="overflow: hidden;">
+
+  <div class="scroll-container" style="height: 500px; overflow-y: auto; margin: 100px; position: relative;">
+    <div id="scroll-element" class="slide" style="height: 50px; background: green; padding: 1px 0; position: absolute; top: 0; width: 100%; ">I'ma hide!</div>
+    <div class="scroll-body" style="height: 5000px; background: yellow; border: 1px solid yellow;">
+      <p style="margin-top: 300px">Hello there threshhold</p>
+    </div>
+
+  </div>
+
+  <script>
+    $('#scroll-element').stickyIcky()
+  </script>
+  </body>
+</html>
