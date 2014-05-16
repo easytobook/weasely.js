@@ -2,17 +2,23 @@
   <head>
   <title>Test for the sticky div</title>
   <style>
-    .slide-up {
-    -webkit-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
-    transform: translateY(-100%)
-    }
+
 
     .slide {
     -webkit-transition: all .25s ease-in-out;
     -moz-transition: all .25s ease-in-out;
     -o-transition: all .25s ease-in-out;
-    transition: all .25s ease-in-out
+    transition: all .25s ease-in-out;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    }
+
+
+    .slide-up {
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%)
     }
   </style>
   <script src="../bower_components/jquery/dist/jquery.js"></script>

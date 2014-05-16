@@ -20,14 +20,10 @@
     }
 
     StickyIcky.prototype.init = function(args) {
-      var $container = this.settings.container;
+      this.$container = this.settings.container;
       var self = this;
-      $container.bind('scroll', function(ev){
-        var scrollTop = $(ev.target).scrollTop();
-        if(self.lastScroll < scrollTop){
-          self.requestTick();
-        }
-        self.lastScroll = scrollTop;
+      this.$container.bind('scroll', function(ev){
+        self.requestTick();
       })
     };
 
@@ -36,11 +32,18 @@
         requestAnimationFrame(this.update.bind(this));
         this.ticking = true;
       }
+      // this.lastScroll = this.$container.scrollTop();
     };
 
     StickyIcky.prototype.update = function(){
-      console.log('update!', this);
-      this.$el.addClass('slide-up')
+      console.log('update!', this.lastScroll, this.$container.scrollTop());
+      if(0 < this.$container.scrollTop()){
+        this.$el.addClass('slide-up');
+      }
+      else{
+        this.$el.removeClass('slide-up');
+      }
+
       this.ticking = false;
     };
 
