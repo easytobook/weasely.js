@@ -1,0 +1,27 @@
+{
+  "name": "weasely.js",
+  "version": "0.0.1",
+  "description": "weasely ===========",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-connect": "~0.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/easytobook/weasely.js.git"
+  },
+  "author": "Ionut Popa",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/easytobook/weasely.js/issues"
+  },
+  "homepage": "https://github.com/easytobook/weasely.js"
+}
