@@ -1,6 +1,7 @@
 Jquery plugin weasely.js
 ===========
 Hide an element like a weasel.
+Compatible with iOs Safari/Chrome touch events etc...
 
 Demo available at /test/test.html
 
