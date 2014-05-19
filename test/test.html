@@ -2,47 +2,47 @@
   <head>
   <title>Test for the sticky div</title>
   <style>
-  html, body{
-    overflow: hidden;
-  }
+    html, body{
+      overflow: hidden;
+    }
 
     .slide {
-    -webkit-transition: all .25s ease-in-out;
-    -moz-transition: all .25s ease-in-out;
-    -o-transition: all .25s ease-in-out;
-    transition: all .25s ease-in-out;
-    -webkit-transform: translate3D(0px, 0, 0px);
-    -ms-transform: translate3D(0px, 0, 0px);
-    transform: translate3D(0px, 0, 0px);
+      -webkit-transition: all .30s ease-in-out;
+      -moz-transition: all .30s ease-in-out;
+      -o-transition: all .30s ease-in-out;
+      transition: all .30s ease-in-out;
+      -webkit-transform: translate3D(0px, 0px, 0px);
+      -ms-transform: translate3D(0px, 0px, 0px);
+      transform: translate3D(0px, 0px, 0px);
     }
 
 
     .slide-up {
-    -webkit-transform: translate3D(0px, -100%, 0px);
-    -ms-transform: translate3D(0px, -100%, 0px);
-    transform: translate3D(0px, -100%, 0px);
+      -webkit-transform: translate3D(0px, -100%, 0px);
+      -ms-transform: translate3D(0px, -100%, 0px);
+      transform: translate3D(0px, -100%, 0px);
     }
   </style>
   <script src="../bower_components/jquery/dist/jquery.js"></script>
-  <script src="../src/sticky-icky.js"></script>
+  <script src="../src/weasely.js"></script>
   </head>
   <body>
 
-  <div class="scroll-wrapper" style="overflow:hidden; position:relative; height: 500px; margin: 100px; background: yellow;">
-    <div id="scroll-element" class="slide" style="z-index: 1; height: 50px; background: green; padding: 1px 0; position: absolute; width: 100%;"></div>
-    <div class="scroll-container" style="-webkit-overflow-scrolling: touch; overflow-y: auto; height:100%; position: relative; padding-top: 50px;">
-      <div class="scroll-body" style="height: 5000px; background: yellow; border: 1px solid yellow;">
-        <p style="margin-top: 10px">Hello there threshhold</p>
-        <p style="margin-top: 300px">wooooooop!</p>
+  <div id="wrapper" style="overflow:hidden; position:relative; height: 500px; margin: 100px; background: yellow;">
+    <div id="weasely-element" class="slide" style="z-index: 1; height: 50px; background: green; padding: 1px 0; position: absolute; width: 100%;">I'ma hide like a weasel!</div>
+    <div class="weasely-scroller" style="-webkit-overflow-scrolling: touch; overflow-y: auto; height:100%; position: relative;">
+      <div style="height: 5000px; background: yellow; border: 1px solid blue; margin-top: 50px;">
+        <p style="margin-top: 10px">Hello there !</p>
+        <p style="margin-top: 300px">Whoop!</p>
       </div>
 
     </div>
   </div>
   <script>
-    $('#scroll-element').stickyIcky()
+    $('#weasely-element').stickyIcky();
+
 
     document.ontouchmove = function(event){
-      console.log(event.target.tagName);
       if(event.target.tagName == "BODY"){
         event.preventDefault();
       }

@@ -1,39 +1,32 @@
 ;(function(window, document, $) {
 
   'use strict';
-  var pluginName = "stickyIcky";
+  var pluginName = "weasely";
 
-  var StickyIcky = (function() {
-
-
-    function StickyIcky(element, options) {
+  var Weasely = (function() {
+    function Weasely(element, options) {
       this.$el = $(element);
       var defaults = {
-        container: this.$el.parent()
+        // container: this.$el.parent()
       }
       this.settings = $.extend( {}, defaults, options );
-
+      this.elementHeight = this.$el.outerHeight();
       this.lastScroll = 0;
-
       this.init();
     }
 
-    StickyIcky.prototype.init = function(args) {
-      this.$container = this.settings.container;
-
+    Weasely.prototype.init = function(args) {
+      this.$scroller = this.$el.siblings('.weasely-scroller');
       var self = this;
-
-      this.$container.find('.scroll-container').bind('touchmove', function(ev){
+      this.$scroller.bind('touchmove', function(ev){
         self.requestTick();
       });
-
-      this.$container.find('.scroll-container').bind('scroll', function(ev){
+      this.$scroller.bind('scroll', function(ev){
         self.requestTick();
-
       });
     };
 
-    StickyIcky.prototype.requestTick = function(ev){
+    Weasely.prototype.requestTick = function(ev){
       var self = this;
       if(!this.ticking) {
         requestAnimationFrame(function(){
@@ -43,10 +36,11 @@
       }
     };
 
-    StickyIcky.prototype.update = function(){
-      var scrollTop = Math.abs(this.$container.find('.scroll-container').scrollTop());
+    Weasely.prototype.update = function(){
+      var scrollTop = Math.abs(this.$scroller.scrollTop());
+      var delta = scrollTop - this.lastScroll;
       if(scrollTop != this.lastScroll){
-        if(scrollTop > this.lastScroll){
+        if(scrollTop > this.lastScroll && scrollTop > this.elementHeight){
           this.$el.addClass('slide-up');
         }
         else{
@@ -56,13 +50,14 @@
       this.lastScroll = scrollTop;
       this.ticking = false;
     };
-    return StickyIcky;
+
+    return Weasely;
   })();
 
   $.fn[pluginName] = function(options) {
     return this.each(function() {
       if ( !$.data( this, "plugin_" + pluginName ) ) {
-        $.data( this, "plugin_" + pluginName, new StickyIcky( this, options ) );
+        $.data( this, "plugin_" + pluginName, new Weasely( this, options ) );
       }
     });
   };
