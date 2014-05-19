@@ -7,7 +7,6 @@
 
 
     function StickyIcky(element, options) {
-
       this.$el = $(element);
       var defaults = {
         container: this.$el.parent()
@@ -21,36 +20,43 @@
 
     StickyIcky.prototype.init = function(args) {
       this.$container = this.settings.container;
+
       var self = this;
-      this.$container.bind('scroll', function(ev){
+
+      this.$container.find('.scroll-container').bind('touchmove', function(ev){
         self.requestTick();
-      })
+      });
+
+      this.$container.find('.scroll-container').bind('scroll', function(ev){
+        self.requestTick();
+
+      });
     };
 
-    StickyIcky.prototype.requestTick = function(){
+    StickyIcky.prototype.requestTick = function(ev){
+      var self = this;
       if(!this.ticking) {
-        requestAnimationFrame(this.update.bind(this));
-        this.ticking = true;
+        requestAnimationFrame(function(){
+          self.ticking = true;
+          self.update();
+        });
       }
-      // this.lastScroll = this.$container.scrollTop();
     };
 
     StickyIcky.prototype.update = function(){
-      console.log('update!', this.lastScroll, this.$container.scrollTop());
-      if(0 < this.$container.scrollTop()){
-        this.$el.addClass('slide-up');
+      var scrollTop = Math.abs(this.$container.find('.scroll-container').scrollTop());
+      if(scrollTop != this.lastScroll){
+        if(scrollTop > this.lastScroll){
+          this.$el.addClass('slide-up');
+        }
+        else{
+          this.$el.removeClass('slide-up');
+        }
       }
-      else{
-        this.$el.removeClass('slide-up');
-      }
-
+      this.lastScroll = scrollTop;
       this.ticking = false;
     };
-
-
-
     return StickyIcky;
-
   })();
 
   $.fn[pluginName] = function(options) {
@@ -60,10 +66,4 @@
       }
     });
   };
-
-  window.StickyIcky = StickyIcky;
-
-
-
-
 }(window, document, window.jQuery));

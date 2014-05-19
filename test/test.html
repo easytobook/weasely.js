@@ -2,40 +2,51 @@
   <head>
   <title>Test for the sticky div</title>
   <style>
-
+  html, body{
+    overflow: hidden;
+  }
 
     .slide {
     -webkit-transition: all .25s ease-in-out;
     -moz-transition: all .25s ease-in-out;
     -o-transition: all .25s ease-in-out;
     transition: all .25s ease-in-out;
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
+    -webkit-transform: translate3D(0px, 0, 0px);
+    -ms-transform: translate3D(0px, 0, 0px);
+    transform: translate3D(0px, 0, 0px);
     }
 
 
     .slide-up {
-    -webkit-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
-    transform: translateY(-100%)
+    -webkit-transform: translate3D(0px, -100%, 0px);
+    -ms-transform: translate3D(0px, -100%, 0px);
+    transform: translate3D(0px, -100%, 0px);
     }
   </style>
   <script src="../bower_components/jquery/dist/jquery.js"></script>
   <script src="../src/sticky-icky.js"></script>
   </head>
-  <body style="overflow: hidden;">
+  <body>
 
-  <div class="scroll-container" style="height: 500px; overflow-y: auto; margin: 100px; position: relative;">
-    <div id="scroll-element" class="slide" style="height: 50px; background: green; padding: 1px 0; position: absolute; top: 0; width: 100%; ">I'ma hide!</div>
-    <div class="scroll-body" style="height: 5000px; background: yellow; border: 1px solid yellow;">
-      <p style="margin-top: 300px">Hello there threshhold</p>
+  <div class="scroll-wrapper" style="overflow:hidden; position:relative; height: 500px; margin: 100px; background: yellow;">
+    <div id="scroll-element" class="slide" style="z-index: 1; height: 50px; background: green; padding: 1px 0; position: absolute; width: 100%;"></div>
+    <div class="scroll-container" style="-webkit-overflow-scrolling: touch; overflow-y: auto; height:100%; position: relative; padding-top: 50px;">
+      <div class="scroll-body" style="height: 5000px; background: yellow; border: 1px solid yellow;">
+        <p style="margin-top: 10px">Hello there threshhold</p>
+        <p style="margin-top: 300px">wooooooop!</p>
+      </div>
+
     </div>
-
   </div>
-
   <script>
     $('#scroll-element').stickyIcky()
+
+    document.ontouchmove = function(event){
+      console.log(event.target.tagName);
+      if(event.target.tagName == "BODY"){
+        event.preventDefault();
+      }
+    }
   </script>
   </body>
 </html>
