@@ -8,9 +8,8 @@ Demo available at /test/test.html
 ###See the demo
 * bower install
 * npm install
-* 
 
-###Usage in your own project
+###Use in your own project
 include weasely.js and jquery and then...
 
 ```
