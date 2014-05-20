@@ -13,7 +13,10 @@ Demo available at /test/test.html
 include weasely.js and jquery and then...
 
 ```
-$('#weasely-element').weasely();
+$('#weasely-element').weasely({
+	hideClass: 'slide-up',
+	scrollingElement: '.weasely-scroller'
+});
 ```
 
 Requires a div with the class 'weasely-scroller' next to the element being hidden.

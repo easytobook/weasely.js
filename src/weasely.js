@@ -7,7 +7,8 @@
     function Weasely(element, options) {
       this.$el = $(element);
       var defaults = {
-        // container: this.$el.parent()
+        hideClass: 'slide-up',
+        scrollingElement: '.weasely-scroller'
       }
       this.settings = $.extend( {}, defaults, options );
       this.elementHeight = this.$el.outerHeight();
@@ -16,7 +17,7 @@
     }
 
     Weasely.prototype.init = function(args) {
-      this.$scroller = this.$el.siblings('.weasely-scroller');
+      this.$scroller = this.$el.siblings(this.settings.scrollingElement);
       var self = this;
       this.$scroller.bind('touchmove', function(ev){
         self.requestTick();
@@ -41,10 +42,10 @@
       var delta = scrollTop - this.lastScroll;
       if(scrollTop != this.lastScroll){
         if(scrollTop > this.lastScroll && scrollTop > this.elementHeight){
-          this.$el.addClass('slide-up');
+          this.$el.addClass(this.settings.hideClass);
         }
         else{
-          this.$el.removeClass('slide-up');
+          this.$el.removeClass(this.settings.hideClass);
         }
       }
       this.lastScroll = scrollTop;
