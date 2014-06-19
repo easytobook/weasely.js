@@ -44,6 +44,7 @@
       this.settings = $.extend( {}, defaults, options );
       this.elementHeight = this.$el.outerHeight();
       this.lastScroll = 0;
+      this.threshold = this.settings.threshold || 0;
       this.init();
     }
 
@@ -70,16 +71,18 @@
 
     Weasely.prototype.update = function(){
       var scrollTop = Math.abs(this.$scroller.scrollTop());
-      var delta = scrollTop - this.lastScroll;
-      if(scrollTop != this.lastScroll){
-        if(scrollTop > this.lastScroll && scrollTop > this.elementHeight){
-          this.$el.addClass(this.settings.hideClass);
+      if(scrollTop > this.threshold){
+        var delta = scrollTop - this.lastScroll;
+        if(scrollTop != this.lastScroll){
+          if(scrollTop > this.lastScroll && scrollTop > this.elementHeight){
+            this.$el.addClass(this.settings.hideClass);
+          }
+          else{
+            this.$el.removeClass(this.settings.hideClass);
+          }
         }
-        else{
-          this.$el.removeClass(this.settings.hideClass);
-        }
+        this.lastScroll = scrollTop;
       }
-      this.lastScroll = scrollTop;
       this.ticking = false;
     };
 
