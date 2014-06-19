@@ -49,7 +49,7 @@
     }
 
     Weasely.prototype.init = function(args) {
-      this.$scroller = this.$el.siblings(this.settings.scrollingElement);
+      this.$scroller = $(this.settings.scrollingElement);
       var self = this;
       this.$scroller.bind('touchmove', function(ev){
         self.requestTick();
