@@ -44,6 +44,7 @@
       this.settings = $.extend( {}, defaults, options );
       this.elementHeight = this.$el.outerHeight();
       this.lastScroll = 0;
+      this.disabled = false;
       this.threshold = this.settings.threshold || 0;
       this.init();
     }
@@ -61,7 +62,7 @@
 
     Weasely.prototype.requestTick = function(ev){
       var self = this;
-      if(!this.ticking) {
+      if(!this.ticking && !this.disabled) {
         requestAnimationFrame(function(){
           self.ticking = true;
           self.update();
@@ -86,13 +87,23 @@
       this.ticking = false;
     };
 
+    Weasely.prototype.off = function(){
+
+      this.disabled = true;
+      this.$el.removeClass(this.settings.hideClass);
+    };
+
+    Weasely.prototype.on = function(){
+      this.disabled = false;
+    };
+
     return Weasely;
   })();
 
   $.fn[pluginName] = function(options) {
     return this.each(function() {
-      if ( !$.data( this, "plugin_" + pluginName ) ) {
-        $.data( this, "plugin_" + pluginName, new Weasely( this, options ) );
+      if ( !$.data( this, pluginName ) ) {
+        $.data( this, pluginName, new Weasely( this, options ) );
       }
     });
   };

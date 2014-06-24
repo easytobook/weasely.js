@@ -27,7 +27,8 @@
   <script src="../src/weasely.js"></script>
   </head>
   <body>
-
+  <button id="disable_weasely" > BOOm!!! </button>
+  <button id="enable_weasely" > POW!!!! </button>
   <div id="wrapper" style="overflow:hidden; position:relative; height: 500px; margin: 100px; background: yellow;">
     <div id="weasely-element" class="slide" style="z-index: 1; height: 50px; background: green; padding: 1px 0; position: absolute; width: 100%;">I'ma hide like a weasel!</div>
     <div class="weasely-scroller" style="-webkit-overflow-scrolling: touch; overflow-y: auto; height:100%; position: relative;">
@@ -43,6 +44,15 @@
     	hideClass: 'slide-up'
     });
 
+    ws = $('#weasely-element').data('weasely')
+
+    $('#disable_weasely').click(function(){
+    	ws.off()
+    })
+
+    $('#enable_weasely').click(function(){
+    	ws.on()
+    })
 
     document.ontouchmove = function(event){
       if(event.target.tagName == "BODY"){
